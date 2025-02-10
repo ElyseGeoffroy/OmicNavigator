@@ -12,7 +12,7 @@ validateStudy <- function(study) {
   checkStudy(study)
 
   emptyElements <- vapply(study, isEmpty, logical(1))
-  elements <- names(study)[!emptyElements]
+  elements <- c(names(study)[!emptyElements], "annotations")
   for (e in elements) {
     checkFunctionName <- paste0("check", capitalize(e))
     checkFunction <- utils::getFromNamespace(checkFunctionName, ns = "OmicNavigator")
