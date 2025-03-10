@@ -1,9 +1,24 @@
+checkNamingConvention <- function(featureObjectName, attr) {
+  # Check study name, models, and tests
+  forbidden <- c("^", ":", "*", "\\",  ">", "<", "$", "|", "?", "/")
+  for (forbid in forbidden) {
+    if(grepl(forbid, featureObjectName, fixed=TRUE)) {
+      stop(sprintf("Error: Forbidden character detected in %s", attr))
+    }
+  }
+  if (substr(featureObjectName, nchar(featureObjectName), nchar(featureObjectName)) == ".") {
+    stop(sprintf("Error: %s cannot end in a period", attr))
+  }
+  return(featureObjectName)
+}
 
 checkStudy <- function(study) {
   stopifnot(
     inherits(study, "onStudy"),
     !is.null(study[["name"]])
   )
+
+  checkNamingConvention(name, "study name")
 }
 
 checkName <- function(name) {
@@ -223,6 +238,8 @@ checkModels <- function(models) {
 
   for (i in seq_along(models)) {
     # Accepts either a single string or a named list
+    model_name = names(models)[[i]]
+    checkNamingConvention(model_name, "model name")
     if (is.character(models[[i]]) && length(models[[i]]) == 1) {
       next
     }
@@ -259,6 +276,8 @@ checkTests <- function(tests) {
     checkList(tests[[i]], allowEmpty = FALSE)
     for (j in seq_along(tests[[i]])) {
       # Accepts either a single string or a named list
+      test_name = names(tests[[i]])[[j]]
+      checkNamingConvention(test_name, "test name")
       if (is.character(tests[[i]][[j]]) && length(tests[[i]][[j]]) == 1) {
         next
       }
