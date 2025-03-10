@@ -575,7 +575,7 @@ expect_silent_xl(
   addMapping(study, mapping = tempMapping)
 )
 
-# check mapping with one model having  mixed content
+# check mapping with one model having mixed content
 tempMapping <- list(data.frame(model_01 = c("ch23", "ch0234", 123),
                                model_02 = c("0123", "0.546", 234),
                                stringsAsFactors = FALSE))
