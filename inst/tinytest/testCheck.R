@@ -686,6 +686,11 @@ expect_error_xl(
   "Report must be a URL or a path to an existing file"
 )
 
+# IPAD-538: addReports accept same report for multiple models
+expect_silent_xl(
+  addReports(study, reports = list(modelID = "https://www.domain.com/report.html", 
+                                               modelID2 = "https://www.domain.com/report.html"))
+)
 # checkResultsLinkouts ---------------------------------------------------------
 
 expect_error_xl(
