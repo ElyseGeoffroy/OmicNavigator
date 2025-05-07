@@ -693,7 +693,7 @@ expect_silent_xl(
 )
 
 expect_silent_xl(
-  addReports(study, reports = list(modelID = "/projects/abv/users/user5xx/Projects/test/Human_analysis_v1.html", modelID2 = "/projects/abv/users/user5xx/Projects/test/Human_analysis_v1.html")),
+  addReports(study, reports = list(modelID = "/projects/abv/users/badgecx/Projects/GSE93766/GSE93766_Human_analysis_v1.html", modelID2 = "/projects/abv/users/badgecx/Projects/GSE93766/GSE93766_Human_analysis_v1.html")),
 )
 # checkResultsLinkouts ---------------------------------------------------------
 
