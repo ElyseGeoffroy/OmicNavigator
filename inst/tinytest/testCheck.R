@@ -692,9 +692,6 @@ expect_silent_xl(
                                                modelID2 = "https://www.domain.com/report.html"))
 )
 
-expect_silent_xl(
-  addReports(study, reports = list(modelID = "/projects/abv/users/badgecx/Projects/GSE93766/GSE93766_Human_analysis_v1.html", modelID2 = "/projects/abv/users/badgecx/Projects/GSE93766/GSE93766_Human_analysis_v1.html")),
-)
 # checkResultsLinkouts ---------------------------------------------------------
 
 expect_error_xl(
