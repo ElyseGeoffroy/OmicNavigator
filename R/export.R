@@ -16,7 +16,8 @@ exportStudy <- function(
   study,
   type = c("tarball", "package"),
   path = NULL,
-  requireValid = TRUE
+  requireValid = TRUE,
+  omitNetworkCreation = FALSE,
 )
 {
   if (requireValid) validateStudy(study) else checkStudy(study)
@@ -27,7 +28,7 @@ exportStudy <- function(
   if (!is.null(path)) directoryname <- file.path(path, directoryname)
   # If anything goes wrong, clean up everything
   on.exit(unlink(directoryname, recursive = TRUE, force = TRUE) , add = TRUE)
-  createPackage(study, directoryname)
+  createPackage(study, directoryname, omitNetworkCreation)
 
   if (type == "package") {
     message(sprintf("Exported study to %s", directoryname))
@@ -393,7 +394,7 @@ exportOverlaps <- function(study, path = ".") {
   )
 }
 
-createPackage <- function(study, directoryname) {
+createPackage <- function(study, directoryname, omitNetworkCreation = FALSE) {
 
   dir.create(directoryname, showWarnings = FALSE, recursive = TRUE)
 
@@ -464,7 +465,7 @@ createPackage <- function(study, directoryname) {
   datadir <- file.path(directoryname, "inst", "OmicNavigator")
   dir.create(datadir, showWarnings = FALSE, recursive = TRUE)
   annotations <- study[["annotations"]]
-  createTextFiles(study, datadir, calcOverlaps = !isEmpty(annotations))
+  createTextFiles(study, datadir, calcOverlaps = !isEmpty(annotations) || omitNetworkCreation)
 
   # Plots
   if (!isEmpty(study[["plots"]])) {
