@@ -272,6 +272,12 @@ expect_error_xl(
   info = "A single missing value would still be unique. Error if it is found"
 )
 
+expect_silent_xl(addSamples(study, samples = list("test|pipe" = data.frame(
+    x = c("a", "b", "c"),
+    y = letters[1:3],
+    stringsAsFactors = FALSE
+  ))))
+
 # checkModels ------------------------------------------------------------------
 
 expect_error_xl(
