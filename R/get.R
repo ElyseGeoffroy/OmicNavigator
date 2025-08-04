@@ -382,7 +382,12 @@ getMetaAssays <- function(study, modelID = NULL, quiet = FALSE, libraries = NULL
     filters = list(modelID = modelID),
     default = "default",
     quiet = quiet,
-    libraries = libraries
+    libraries = libraries,
+    hasRowNames = TRUE,
+    # The featureIDs are returned as row names, but they are initially imported
+    # as the first column, and then converted to the row names. This is because
+    # data.table does not support row names.
+    colClasses = list(character = 1)
   )
 }
 
