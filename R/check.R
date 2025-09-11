@@ -518,9 +518,27 @@ checkReports <- function(reports) {
     # if(!is.character(report) && !is.list(report)){
     #   stop("Report must be a string (file path or URL) or a list")
     # }
-    if (!isUrl(report) && !file.exists(report)) {
-      stop("Report must be a URL or a path to an existing file")
+    if (is.list(report)){
+      checkList(report, allowEmpty = TRUE)
+      for (j in seq_along(report)) {
+        stopifnot(
+          is.character(report[[j]]),
+          length(report[[j]]) == 1
+        )
+        if (!isUrl(report[[j]]) && !file.exists(report[[j]])) {
+          stop("Report must be a URL or a path to an existing file")
+        }
+      }
+      next
+    } else if (is.character(report)) {
+      if (!isUrl(report) && !file.exists(report)) {
+        stop("Report must be a URL or a path to an existing file")
+      }
+      next
+    } else {
+      stop("Report must be a string (file path or URL) or a list")
     }
+
   }
 
   return(NULL)

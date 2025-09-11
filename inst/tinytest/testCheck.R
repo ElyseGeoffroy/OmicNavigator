@@ -704,7 +704,7 @@ expect_silent_xl(
 )
 
 expect_silent_xl(
-  addReports(study, reports = list(modelID = c("https://www.domain.com/report1.html",
+  addReports(study, reports = list(modelID = list("https://www.domain.com/report1.html",
                                                "https://www.domain.com/report2.html")))
 )
 
