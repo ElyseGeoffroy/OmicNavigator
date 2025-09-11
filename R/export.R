@@ -476,15 +476,31 @@ createPackage <- function(study, directoryname) {
     for (i in seq_along(reports)) {
       report <- reports[[i]]
       modelID <- names(reports)[i]
-      if (!isUrl(report)) {
-        newPath <- file.path(reportsdir, modelID)
-        dir.create(newPath, showWarnings = FALSE, recursive = TRUE)
-        fileExtension <- tools::file_ext(report)
-        newFile <- paste0("report.", fileExtension)
-        newPath <- file.path(newPath, newFile)
-        file.copy(report, newPath)
-        reports[[i]] <- file.path(pkgname, "OmicNavigatorReports", modelID, newFile)
+      if(is.list(report)) {
+        for (j in seq_along(report)) {
+          if (!isUrl(report[[j]])) {
+            newPath <- file.path(reportsdir, modelID)
+            dir.create(newPath, showWarnings = FALSE, recursive = TRUE)
+            fileExtension <- tools::file_ext(report[[j]])
+            newFile <- paste0("report.", fileExtension)
+            newPath <- file.path(newPath, newFile)
+            file.copy(report[[j]], newPath)
+            report[[j]] <- file.path(pkgname, "OmicNavigatorReports", modelID, newFile)
+          }
+        }
+        reports[[i]] <- report
+      } else {
+        if (!isUrl(report)) {
+          newPath <- file.path(reportsdir, modelID)
+          dir.create(newPath, showWarnings = FALSE, recursive = TRUE)
+          fileExtension <- tools::file_ext(report)
+          newFile <- paste0("report.", fileExtension)
+          newPath <- file.path(newPath, newFile)
+          file.copy(report, newPath)
+          reports[[i]] <- file.path(pkgname, "OmicNavigatorReports", modelID, newFile)
+        }
       }
+      
     }
     # Update study object to use new paths to installed reports
     # Note: Can't use addReports() here b/c the file doesn't exist until package
