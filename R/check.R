@@ -510,30 +510,28 @@ checkBarcodes <- function(barcodes) {
   return(NULL)
 }
 
+checkURLorPath <- function(report) {
+  stopifnot(
+    is.character(report),
+    length(report) == 1
+  )
+  if (!isUrl(report) && !file.exists(report)) {
+    stop("Report must be a URL or a path to an existing file")
+  }
+  return(NULL)
+}
+
 checkReports <- function(reports) {
   checkList(reports)
 
   for (i in seq_along(reports)) {
     report <- reports[[i]]
-    # if(!is.character(report) && !is.list(report)){
-    #   stop("Report must be a string (file path or URL) or a list")
-    # }
     if (is.list(report)){
-      for (j in seq_along(report)) {
-        stopifnot(
-          is.character(report[[j]]),
-          length(report[[j]]) == 1
-        )
-        if (!isUrl(report[[j]]) && !file.exists(report[[j]])) {
-          stop("Report must be a URL or a path to an existing file")
-        }
+      for (j in report) {
+        checkURLorPath(j)
       }
-      next
     } else if (is.character(report)) {
-      if (!isUrl(report) && !file.exists(report)) {
-        stop("Report must be a URL or a path to an existing file")
-      }
-      next
+      checkURLorPath(report)
     } else {
       stop("Report must be a string (file path or URL) or a list")
     }
