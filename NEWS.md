@@ -1,62 +1,53 @@
-# 1.14.18
+# 1.16.3
 
-* The release tarball includes version 1.9.7 of the web app
+* The release tarball includes version 2.0.3 of the web app
 
-# 1.14.17
+# 1.16.2
 
-* The release tarball includes version 1.9.7 of the web app
+* The release tarball includes version 2.0.2 of the web app
 
-# 1.14.16
+# 1.16.1
 
-* The release tarball includes version 1.9.7 of the web app
+* The release tarball includes version 2.0.1 of the web app
 
-# 1.14.15
+# 1.16.0
 
-* The release tarball includes version .1.9.7 of the web app
+* Add support for sharing a custom plotting function across any subset of models
+of a study
+* Add argument `requireValid` to `installStudy()`
+* OmicNavigatorWebApp:
+  * Fix bug that caused enrichments tab to go blank (version 1.9.9)
+  * Restore support for custom plotting functions that were shared across models
+  using the special modelID "default" (version 2.0.0)
 
-# 1.14.14
+# 1.15.2
 
-* The release tarball includes version 1.9.7 of the web app
+* The release tarball includes version 2.0.0 of the web app
 
-# 1.14.13
+# 1.15.1
 
-* The release tarball includes version 1.9.7 of the web app
+* The release tarball includes version 1.9.9 of the web app
 
-# 1.14.12
+# 1.15.0
 
-* The release tarball includes version 1.9.7 of the web app
+* Check for invalid names and fix check for empty mapping
+(implemented by [Elyse Geoffroy](https://github.com/ElyseGeoffroy) in [PR #45](https://github.com/abbvie-external/OmicNavigator/pull/45))
+* Check for empty annotation terms
+(implemented by [Elyse Geoffroy](https://github.com/ElyseGeoffroy) in [PR #49](https://github.com/abbvie-external/OmicNavigator/pull/49))
+* Use UTF-8 encoding in study packages to support special characters in description
+(implemented by [Elyse Geoffroy](https://github.com/ElyseGeoffroy) in [PR #52](https://github.com/abbvie-external/OmicNavigator/pull/52))
+* Refresh documentation, tests, and CI workflows
+([John Blischak](https://github.com/jdblischak))
+* Include latest version of web app
+([1.9.8](https://github.com/abbvie-external/OmicNavigatorWebApp/releases/tag/v1.9.8))
 
-# 1.14.11
+# 1.14.19
 
-* The release tarball includes version 1.9.7 of the web app
+* The release tarball includes version 1.9.8 of the web app
 
-# 1.14.10
+# 1.14.4 - 1.14.18
 
-* The release tarball includes version 1.9.7 of the web app
-
-# 1.14.9
-
-* The release tarball includes version 1.9.7 of the web app
-
-# 1.14.8
-
-* The release tarball includes version 1.9.7 of the web app
-
-# 1.14.7
-
-* The release tarball includes version 1.9.7 of the web app
-
-# 1.14.6
-
-* The release tarball includes version 1.9.7 of the web app
-
-# 1.14.5
-
-* The release tarball includes version 1.9.7 of the web app
-
-# 1.14.4
-
-* The release tarball includes version 1.9.7 of the web app
+* For troubleshooting only
 
 # 1.14.3
 

@@ -269,6 +269,26 @@ checkAssays <- function(assays) {
   return(NULL)
 }
 
+checkMetaAssays <- function(metaAssays) {
+  checkList(metaAssays)
+
+  for (i in seq_along(metaAssays)) {
+    stopifnot(
+      inherits(metaAssays[[i]], "data.frame"),
+      nrow(metaAssays[[i]]) > 0,
+      ncol(metaAssays[[i]]) > 0
+    )
+    # All the columns must be numeric
+    colsAllNum <- all(vapply(metaAssays[[i]], is.numeric, logical(1)))
+    if (!colsAllNum) {
+      stop("The columns of the metaAssays data frame must all be numeric.\n",
+           sprintf("Problematic modelID: %s", names(metaAssays)[i]))
+    }
+  }
+
+  return(NULL)
+}
+
 checkTests <- function(tests) {
   checkList(tests)
 
@@ -305,7 +325,7 @@ checkAnnotations <- function(annotations) {
     }
     terms <- annotations[[i]][["terms"]]
     checkList(terms, allowEmpty = FALSE)
-    if (!all(vapply(terms, is.character, logical(1)))) {
+    if (!all(vapply(terms, is.character, logical(1))) || sum(is.null(terms)) > 0 || sum(!grepl("\\S", terms)) > 0) {
       stop(sprintf("The terms for \"%s\" must be a named list of character vectors",
                    annotationID))
     }
@@ -557,4 +577,3 @@ checkMetaFeaturesLinkouts <- function(metaFeaturesLinkouts) {
 
   return(NULL)
 }
-
