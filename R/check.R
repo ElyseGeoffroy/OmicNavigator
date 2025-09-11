@@ -519,7 +519,6 @@ checkReports <- function(reports) {
     #   stop("Report must be a string (file path or URL) or a list")
     # }
     if (is.list(report)){
-      checkList(report, allowEmpty = TRUE)
       for (j in seq_along(report)) {
         stopifnot(
           is.character(report[[j]]),
