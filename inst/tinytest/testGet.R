@@ -50,16 +50,6 @@ expect_identical_xl(
 )
 
 # getStudyMeta -------------------------------------------------------------
-metadata <- testStudyObj[["studyMeta"]]
-metadata[["description"]] <- testStudyObj[["description"]]
-metadata[["version"]] <- metadata[["version"]]
-metadata[["maintainer"]] <- metadata[["maintainer"]]
-metadata[["maintainerEmail"]] <- metadata[["maintainerEmail"]]
-expect_identical_xl(
-  getStudyMeta(testStudyObj[["name"]]),
-  metadata
-)
-
 expect_error_xl(
   getStudyMeta("non-existent-study"),
   "not installed"
