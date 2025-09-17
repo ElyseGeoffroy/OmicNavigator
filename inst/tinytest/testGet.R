@@ -50,9 +50,14 @@ expect_identical_xl(
 )
 
 # getStudyMeta -------------------------------------------------------------
+metadata <- testStudyObj[["studyMeta"]]
+metadata[["description"]] <- testStudyObj[["description"]]
+metadata[["version"]] <- metadata[["version"]]
+metadata[["maintainer"]] <- metadata[["maintainer"]]
+metadata[["maintainerEmail"]] <- metadata[["maintainerEmail"]]
 expect_identical_xl(
   getStudyMeta(testStudyObj),
-  testStudyObj[["studyMeta"]]
+  metadata
 )
 
 expect_error_xl(

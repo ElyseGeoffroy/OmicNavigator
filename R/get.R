@@ -43,6 +43,10 @@ getStudyMeta <- function(name) {
   }
   study <- importStudy(name)
   meta <- study[["studyMeta"]]
+  meta[["description"]] <- study[["description"]]
+  meta[["version"]] <- study[["version"]]
+  meta[["maintainer"]] <- study[["maintainer"]]
+  meta[["maintainerEmail"]] <- study[["maintainerEmail"]]
   return(meta)
 }
 
