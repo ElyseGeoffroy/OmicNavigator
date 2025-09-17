@@ -56,7 +56,7 @@ metadata[["version"]] <- metadata[["version"]]
 metadata[["maintainer"]] <- metadata[["maintainer"]]
 metadata[["maintainerEmail"]] <- metadata[["maintainerEmail"]]
 expect_identical_xl(
-  getStudyMeta(testStudyObj),
+  getStudyMeta(testStudyObj[["name"]]),
   metadata
 )
 
