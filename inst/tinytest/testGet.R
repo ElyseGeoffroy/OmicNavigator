@@ -49,6 +49,17 @@ expect_identical_xl(
   testStudyName
 )
 
+# getStudyMeta -------------------------------------------------------------
+expect_identical_xl(
+  getStudyMeta(testStudyObj),
+  testStudyObj[["studyMeta"]]
+)
+
+expect_error_xl(
+  getStudyMeta("non-existent-study"),
+  "not installed"
+)
+
 # getSamples -------------------------------------------------------------------
 
 expect_identical_xl(
